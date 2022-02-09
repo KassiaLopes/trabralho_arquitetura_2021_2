@@ -214,7 +214,8 @@ void STR_STRH_STRB_LDRSBpre_LDR_LDRH_LDRB_LDRSHpre(char vet[], int registradores
     Lm = ((vet[2] & 7) << 1);
     Lm = Lm | ((vet[2] & 8) >> 3); 
 
-     registradores[Ld] = registradores[Ln] - registradores [Lm]
+     int adress = registradores[Ln] + registradores [Lm];
+     registradores[Ld] = Load_memory_data(address,  memoria_de_dados_address,  memoria_de_dados_conteudo, cont_m);
 }
 
 //falta CPY
@@ -232,7 +233,7 @@ void STR_LDR_com_Ln_immed_x4(char vet[], int registradores[], char CPSR[]){
     imediato = imediato * 4;
     
     int adress = registradores[Ln] + imediato; // endereço do operando
-    registradores[Ld] = Load_memory_data[adress]; // recebe conteudo de Ln
+    registradores[Ld] = Load_memory_data(address,  memoria_de_dados_address,  memoria_de_dados_conteudo, cont_m);; // recebe conteudo de Ln
 }
 
 void STRB_LDRB_com_ln_imediato(char vet[], int registradores[], char CPSR[]){
@@ -247,7 +248,7 @@ void STRB_LDRB_com_ln_imediato(char vet[], int registradores[], char CPSR[]){
     imediato = imediato | ((vet[2] & 12) >> 2);
 
      int adress = registradores[Ln] + imediato;
-     registradores[Ld] = Load_memory_data[adress];
+     registradores[Ld] = Load_memory_data(address,  memoria_de_dados_address,  memoria_de_dados_conteudo, cont_m);
 }
 
 void STRH_LDRH_com_Ln_immed_x2(char vet[], int registradores[], char CPSR[]){
@@ -264,7 +265,7 @@ void STRH_LDRH_com_Ln_immed_x2(char vet[], int registradores[], char CPSR[]){
     imediato = imediato * 2;
 
     int adress = registradores[Ln] +imediato;
-    registradores[Ld] = Load_memory_data[adress];
+    registradores[Ld] = Load_memory_data(address,  memoria_de_dados_address,  memoria_de_dados_conteudo, cont_m);
 }
 
 void STR_LDR_ADD_com_ld_sp_pc_com_immediato8_x4(char vet[], int registradores[], char CPSR[]){
