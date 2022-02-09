@@ -60,7 +60,160 @@ void Decodifica(char vet[], int registradores[], char CPSR[]){
         }
        
         break;
+    if ((vet[1] >> 1) == 5 ){
+            //instruçao SUB com LM
+            SUB_com_LM(vet, registradores, CPSR);
+
+        }
+        //instrução ADD/SUB imediado de 3bits
+        if ((vet[1] >> 1) == 6 ){
+            ADD_com_imediato3(vet, registradores, CPSR);
+
+        }
+        if ((vet[1] >> 1) == 7 ){
+            //instruçao SUB com imediado
+           SUB_com_imediato3(vet, registradores, CPSR);
+
+        }
+
+        break;
+    case 2:
+        //Instruçoes MOV/ CMP com imediado de 8bits 
+        if ((vet[1] >> 3) == 0){
+           void MOV_com_imediato8(vet, registradores, CPSR);
+
+        }
+        if ((vet[1] >> 3) == 1){
+           void CMP_com_imediato8(vet, registradores, CPSR);
+        }
+       
+        break;
+    
+     case 3:
+     //instrução ADD/ SUB com imediado de 8 bits
+      if ((vet[1] >> 3) == 0){
+            void ADD_com_imediato8(vet, registradores, CPSR);
+
+        }
+        if ((vet[1] >> 3) == 1){
+            void SUB_com_imediato8(vet, registradores, CPSR);
+        }
         
+        break;
+
+    // colocar case 4 , ver se o Hugo fez
+
+      case 5:
+        if(vet[1] == 0){
+            //instruçao STR 
+            void STR_STRH_STRB_LDRSBpre_LDR_LDRH_LDRB_LDRSHpre(vet, registradores, CPSR);
+
+        }
+        if(vet[1] == 1){
+            //instruçao | STRH 
+            void STR_STRH_STRB_LDRSBpre_LDR_LDRH_LDRB_LDRSHpre(vet, registradores, CPSR);
+
+        }
+        if(vet[1] == 2){
+            //instruçao | STRB
+            void STR_STRH_STRB_LDRSBpre_LDR_LDRH_LDRB_LDRSHpre(vet, registradores, CPSR);
+
+        }
+        if(vet[1] == 3){
+            //instruçao | LDRSB pre
+           void STR_STRH_STRB_LDRSBpre_LDR_LDRH_LDRB_LDRSHpre(vet, registradores, CPSR);
+
+        }
+        if(vet[1] == 8){
+            //instruçao LDR 
+           void STR_STRH_STRB_LDRSBpre_LDR_LDRH_LDRB_LDRSHpre(vet, registradores, CPSR);
+
+        }
+        if(vet[1] == 9){
+            //instruçao | LDRH 
+           void STR_STRH_STRB_LDRSBpre_LDR_LDRH_LDRB_LDRSHpre(vet, registradores, CPSR);
+        }
+        if(vet[1] == 10){
+            //instruçao | LDRB 
+           void STR_STRH_STRB_LDRSBpre_LDR_LDRH_LDRB_LDRSHpre(vet, registradores, CPSR);
+
+        }
+        if(vet[1] == 11){
+            //instruçao  LDRSH pre
+           void STR_STRH_STRB_LDRSBpre_LDR_LDRH_LDRB_LDRSHpre(vet, registradores, CPSR);
+        }
+
+        break;
+
+    case 6:
+        if((vet[1] & 8) == 0){
+            //instruçao STR  Ld, [Ln, #immed*4]
+            void STR_LDR_com_Ln_immed_x4(vet, registradores, CPSR);
+        }
+        if((vet[1] & 8) == 8){
+            //instruçao LDR Ld, [Ln, #immed*4]
+            void STR_LDR_com_Ln_immed_x4(vet, registradores, CPSR);
+        }
+
+        break;
+
+     case 7:
+        if((vet[1] & 8) == 0){
+           //instruçao  STRB Ld, [Ln, #immed]
+           void STRB_LDRB_com_ln_imediato(vet, registradores, CPSR);
+        }
+        if((vet[1] & 8) == 8){
+           //instruçao   LDRB Ld, [Ln, #immed]
+           void STRB_LDRB_com_ln_imediato(vet, registradores, CPSR);        }
+        break;
+
+    case 8:
+       if((vet[1] & 8) == 0){
+           //instruçao  STRH Ld, [Ln, #immed*2]
+           void STRH_LDRH_com_Ln_immed_x2(vet, registradores, CPSR);
+        }
+        if((vet[1] & 8) == 8){
+           //instruçao LDRH Ld, [Ln, #immed*2]
+           void STRH_LDRH_com_Ln_immed_x2(vet, registradores, CPSR);
+        }
+        break;
+
+    case 9:
+        if ((vet[1] >> 3) == 0){
+            // instruçao STR Ld, [sp, #immed*4]
+           void STR_LDR_ADD_com_ld_sp_pc_com_immediato8_x4(vet, registradores, CPSR);
+        }
+        if ((vet[1] >> 3) == 1){
+            //instruçao LDR Ld, [sp, #immed*4]
+           void STR_LDR_ADD_com_ld_sp_pc_com_immediato8_x4(vet, registradores, CPSR);
+
+        }
+        break;
+
+    case 10: 
+        if ((vet[1] >> 3) == 0){
+            // instruçao ADD Ld, pc, #immed*4 |
+           void ADD_Ld_pc_immed_x4(vet, registradores, CPSR);
+        }
+        if ((vet[1] >> 3) == 1){
+            //instruçao ADD Ld, sp, #immed*4
+            void ADD_Ld_sp_immed_x4(vet, registradores, CPSR);
+
+        }
+        break;
+        
+
+    case 11:
+        if((vet[1] == 0) && ((vet[2] & 8) == 0)){
+            // instruçao ADD sp, #immed*4
+           void ADD_SUB_com_sp_imediato7(vet, registradores, CPSR);
+        }
+
+        if((vet[1] == 0) && ((vet[2] & 8) == 8)){
+            // instruçao SUB sp, #immed*4
+           void ADD_SUB_com_sp_imediato7(vet, registradores, CPSR);
+
+    break;
     }
 }
 
