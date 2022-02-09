@@ -101,8 +101,101 @@ void Decodifica(char vet[], int registradores[], char CPSR[]){
         
         break;
 
-    // colocar case 4 , ver se o Hugo fez
+    
+    case 4:
+       /**instruçoes AND | EOR | LSL | LSR |ASR | ADC | SBC | ROR| TST | NEG | CMP | CMN | ORR | MUL | BIC | MVN
+        CPY Ld, Lm |ADD | MOV Ld, Hm| ADD | MOV Hd, Lm| ADD | MOV Hd, Hm|CMP|CMP|CMP|BX | BLX |LDR Ld, [pc, #immed*4]*/
 
+        if (vet[1]  == 0){
+            //instruçoes AND | EOR | LSL | LSR 
+            if((vet[2] & 12) == 0){
+                //instruçao AND
+               void AND_EOR_LSL_LSR_ASR_ADC_SBC_ROR_TST_NEG_CMP_CMN_ORR_MUL_BIC_MVN(vet,registradores,CPSR);
+            } 
+            if((vet[2] & 12) == 4){
+                //instrução EOR
+              void AND_EOR_LSL_LSR_ASR_ADC_SBC_ROR_TST_NEG_CMP_CMN_ORR_MUL_BIC_MVN(vet,registradores,CPSR);
+            }
+            if((vet[2] & 12) == 8){
+                //instrução LSL
+              void AND_EOR_LSL_LSR_ASR_ADC_SBC_ROR_TST_NEG_CMP_CMN_ORR_MUL_BIC_MVN(vet,registradores,CPSR);
+            }
+            if((vet[2] & 12) == 12){
+                //instrução LSR
+               void AND_EOR_LSL_LSR_ASR_ADC_SBC_ROR_TST_NEG_CMP_CMN_ORR_MUL_BIC_MVN(vet,registradores,CPSR);
+            }
+        }
+        if (vet[1] == 1){
+            //instruçoes ASR | ADC | SBC | ROR
+            if((vet[2] & 12) == 0){
+                 //instrução ASR
+              void AND_EOR_LSL_LSR_ASR_ADC_SBC_ROR_TST_NEG_CMP_CMN_ORR_MUL_BIC_MVN(vet,registradores,CPSR);
+
+            }
+            if((vet[2] & 12) == 4){
+                 //instrução ADC
+              void AND_EOR_LSL_LSR_ASR_ADC_SBC_ROR_TST_NEG_CMP_CMN_ORR_MUL_BIC_MVN(vet,registradores,CPSR);
+            }
+            if((vet[2] & 12) == 8){
+                 //instrução SBC
+               void AND_EOR_LSL_LSR_ASR_ADC_SBC_ROR_TST_NEG_CMP_CMN_ORR_MUL_BIC_MVN(vet,registradores,CPSR);
+            
+            if((vet[2] & 12) == 12){
+                 //instrução ROR
+               void AND_EOR_LSL_LSR_ASR_ADC_SBC_ROR_TST_NEG_CMP_CMN_ORR_MUL_BIC_MVN(vet,registradores,CPSR);
+            }
+
+        }
+        if (vet[1] == 2){
+            //instruçoes TST | NEG | CMP | CMN |
+            if((vet[2] & 12) == 0){
+                 //instrução TST
+               void AND_EOR_LSL_LSR_ASR_ADC_SBC_ROR_TST_NEG_CMP_CMN_ORR_MUL_BIC_MVN(vet,registradores,CPSR);
+
+            }
+            if((vet[2] & 12) == 4){
+                 //instrução NEG
+                void AND_EOR_LSL_LSR_ASR_ADC_SBC_ROR_TST_NEG_CMP_CMN_ORR_MUL_BIC_MVN(vet,registradores,CPSR);
+            }
+            if((vet[2] & 12) == 8){
+                 //instrução CMP
+                void AND_EOR_LSL_LSR_ASR_ADC_SBC_ROR_TST_NEG_CMP_CMN_ORR_MUL_BIC_MVN(vet,registradores,CPSR);
+            }
+            if((vet[2] & 12) == 12){
+                 //instrução CMN
+               void AND_EOR_LSL_LSR_ASR_ADC_SBC_ROR_TST_NEG_CMP_CMN_ORR_MUL_BIC_MVN(vet,registradores,CPSR);
+            }
+
+        }
+        if (vet[1] == 3){
+            //instruçoes ORR | MUL | BIC | MVN
+            if((vet[2] & 12) == 0){
+                 //instrução ORR
+               void AND_EOR_LSL_LSR_ASR_ADC_SBC_ROR_TST_NEG_CMP_CMN_ORR_MUL_BIC_MVN(vet,registradores,CPSR);
+
+            }
+            if((vet[2] & 12) == 4){
+                 //instrução NEG
+               void AND_EOR_LSL_LSR_ASR_ADC_SBC_ROR_TST_NEG_CMP_CMN_ORR_MUL_BIC_MVN(vet,registradores,CPSR);
+            }
+            if((vet[2] & 12) == 8){
+                 //instrução CMP
+               void AND_EOR_LSL_LSR_ASR_ADC_SBC_ROR_TST_NEG_CMP_CMN_ORR_MUL_BIC_MVN(vet,registradores,CPSR);
+            }
+            if((vet[2] & 12) == 12){
+                 //instrução CMN
+               void AND_EOR_LSL_LSR_ASR_ADC_SBC_ROR_TST_NEG_CMP_CMN_ORR_MUL_BIC_MVN(vet,registradores,CPSR);
+            }
+        }
+        if (vet[1] == 6){
+            //INSTRUÇOES CPY Ld, Lm
+            if((vet[2] & 12) == 0){
+                 //instrução CPY 
+                void AND_EOR_LSL_LSR_ASR_ADC_SBC_ROR_TST_NEG_CMP_CMN_ORR_MUL_BIC_MVN(vet,registradores,CPSR);
+
+            }
+
+            //continua com as instruções do Hugo
       case 5:
         if(vet[1] == 0){
             //instruçao STR 

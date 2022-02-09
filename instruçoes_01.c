@@ -197,8 +197,9 @@ void AND_EOR_LSL_LSR_ASR_ADC_SBC_ROR_TST_NEG_CMP_CMN_ORR_MUL_BIC_MVN(char vet[],
     LM_LS = ((vet[2] & 3) << 4); //pegando os 2priemiros bits do terceiro digito
     LM_LS = (LM_LS | (vet[3] & 8)) >> 3;
     int registrador_destino = (vet[3] & 7); //3 primeiros bits do quarto digito ;
-
-     registradores[Ld] = registradores[Ln] - registradores [Lm]
+  /* FAZER
+     registradores[LM_LS] = registradores[Ln] - registradores [Lm]
+     */
 }
 
 void STR_STRH_STRB_LDRSBpre_LDR_LDRH_LDRB_LDRSHpre(char vet[], int registradores[], char CPSR[]){
@@ -230,8 +231,8 @@ void STR_LDR_com_Ln_immed_x4(char vet[], int registradores[], char CPSR[]){
     imediato = imediato | ((vet[2] & 12) >> 2);
     imediato = imediato * 4;
     
-    registradores[Ln]= registradores[Ln] + imediato; // endereço do operando
-    registradores[Ld] = registradores[Ln]; // recebe conteudo de Ln
+    int adress = registradores[Ln] + imediato; // endereço do operando
+    registradores[Ld] = Load_memory_data[adress]; // recebe conteudo de Ln
 }
 
 void STRB_LDRB_com_ln_imediato(char vet[], int registradores[], char CPSR[]){
@@ -245,7 +246,8 @@ void STRB_LDRB_com_ln_imediato(char vet[], int registradores[], char CPSR[]){
     imediato = ((vet[1] & 7) << 2);
     imediato = imediato | ((vet[2] & 12) >> 2);
 
-     registradores[Ld] = registradores[Ln] - registradores [Ld];
+     int adress = registradores[Ln] + imediato;
+     registradores[Ld] = Load_memory_data[adress];
 }
 
 void STRH_LDRH_com_Ln_immed_x2(char vet[], int registradores[], char CPSR[]){
@@ -261,7 +263,8 @@ void STRH_LDRH_com_Ln_immed_x2(char vet[], int registradores[], char CPSR[]){
     imediato = imediato | ((vet[2] & 12) >> 2);
     imediato = imediato * 2;
 
-     registradores[Ld] = registradores[Ln] - registradores [Lm]
+    int adress = registradores[Ln] +imediato;
+    registradores[Ld] = Load_memory_data[adress];
 }
 
 void STR_LDR_ADD_com_ld_sp_pc_com_immediato8_x4(char vet[], int registradores[], char CPSR[]){
@@ -288,7 +291,7 @@ void ADD_Ld_pc_immed_x4(char vet[], int registradores[], char CPSR[]){
 
     imediato = imediato * 4;
 
-     registradores[Ld] = pc + imediato;
+     registradores[Ld] = registradores[0] + imediato;
 }
 
 void ADD_Ld_sp_immed_x4(char vet[], int registradores[], char CPSR[]){
@@ -299,8 +302,8 @@ void ADD_Ld_sp_immed_x4(char vet[], int registradores[], char CPSR[]){
     imediato = ((vet[2] & 15) << 4); //bits do 8 primeiros bits
     imediato = imediato |(vet[3] & 15);
 
-    imediato = imediato * 4
-
+    imediato = imediato * 4;
+// falta o sp
      registradores[Ld] = sp + imediato;
 }
 
@@ -312,7 +315,7 @@ void ADD_SUB_com_sp_imediato7(char vet[], int registradores[], char CPSR[]){
     imediato = imediato | (vet[3]); //pegando os ultimos 7bits
 
     imediato = imediato * 4; 
-
+    // falta o sp
      registradores[sp] = registradores[sp] + imediato;
 }
  
